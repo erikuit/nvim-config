@@ -598,8 +598,6 @@ require('lazy').setup({
           },
         },
 
-        phpactor = {},
-
         gopls = {},
 
         --
