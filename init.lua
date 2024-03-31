@@ -162,6 +162,10 @@ vim.opt.scrolloff = 10
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+-- Less disorienting scrolling
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
 -- Toggle Neotree binding
 vim.keymap.set('n', '`', '<Cmd>Neotree toggle<CR>')
 
