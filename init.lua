@@ -80,8 +80,12 @@ vim.opt.scrolloff = 10
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
+-- Move selected line / block of text in visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+-- Prefill replace command
+vim.keymap.set('n', 'S', ':%s//g<Left><Left>')
 
 -- Toggle Neotree binding
 vim.keymap.set('n', '`', '<Cmd>Neotree toggle<CR>')
