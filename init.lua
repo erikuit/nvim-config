@@ -80,6 +80,9 @@ vim.opt.scrolloff = 10
 vim.keymap.set('n', '<C-d>', '<C-d>M')
 vim.keymap.set('n', '<C-u>', '<C-u>M')
 
+-- Add newline without leaving normal mode
+vim.keymap.set('n', 'oo', 'o<Esc>')
+
 -- Move selected line / block of text in visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
