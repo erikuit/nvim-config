@@ -497,6 +497,8 @@ require('lazy').setup({
           filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact', 'javascript.jsx' },
         },
 
+        rust_analyzer = {},
+
         emmet_language_server = {},
 
         volar = {
