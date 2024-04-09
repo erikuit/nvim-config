@@ -495,6 +495,10 @@ require('lazy').setup({
 
         emmet_language_server = {},
 
+        twiggy_language_server = {},
+
+        eslint = {},
+
         volar = {
           filetypes = { 'vue' },
           init_options = {
