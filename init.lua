@@ -81,7 +81,8 @@ vim.keymap.set('n', '<C-d>', '<C-d>M')
 vim.keymap.set('n', '<C-u>', '<C-u>M')
 
 -- Add newline without leaving normal mode
-vim.keymap.set('n', 'oo', 'o<Esc>')
+vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Add newline below' })
+vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Add newline above' })
 
 -- Move selected line / block of text in visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
