@@ -467,11 +467,17 @@ require('lazy').setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-      local vue_typescript_plugin = vim.env.HOME
-        .. '/.nvm/versions/node/v20.11.0'
-        .. '/lib/node_modules'
-        .. '/@vue/language-server/node_modules'
-        .. '/@vue/typescript-plugin'
+      local get_npm_prefix = function()
+        local handle = io.popen 'npm config get prefix'
+        local npm_prefix = ''
+        if handle then
+          npm_prefix = handle:read('*a'):gsub('\n', '')
+          handle:close()
+        end
+        return npm_prefix
+      end
+
+      local vue_typescript_plugin = get_npm_prefix() .. '/lib/node_modules' .. '/@vue/language-server/node_modules' .. '/@vue/typescript-plugin'
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
