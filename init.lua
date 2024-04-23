@@ -494,6 +494,12 @@ require('lazy').setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+      local vue_typescript_plugin = vim.env.HOME
+        .. '/.nvm/versions/node/v20.11.0'
+        .. '/lib/node_modules'
+        .. '/@vue/language-server/node_modules'
+        .. '/@vue/typescript-plugin'
+
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -515,7 +521,16 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {
-          filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact', 'javascript.jsx' },
+          init_options = {
+            plugins = {
+              {
+                name = '@vue/typescript-plugin',
+                location = vue_typescript_plugin,
+                languages = { 'javascript', 'typescript', 'vue' },
+              },
+            },
+          },
+          filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact', 'javascript.jsx', 'vue' },
         },
 
         rust_analyzer = {},
@@ -526,18 +541,9 @@ require('lazy').setup({
 
         eslint = {},
 
-        volar = {
-          filetypes = { 'vue' },
-          init_options = {
-            vue = {
-              hybridMode = false,
-            },
-          },
-        },
+        volar = {},
 
         gopls = {},
-
-        --
 
         lua_ls = {
           -- cmd = {...},
