@@ -77,11 +77,12 @@ vim.opt.scrolloff = 10
 --  See `:help vim.keymap.set()`
 
 -- Less disorienting scrolling
-vim.keymap.set('n', '<C-d>', '<C-d>M')
-vim.keymap.set('n', '<C-u>', '<C-u>M')
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
 -- Add newline without leaving normal mode
-vim.keymap.set('n', 'oo', 'o<Esc>')
+vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Add newline below' })
+vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Add newline above' })
 
 -- Move selected line / block of text in visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
@@ -466,6 +467,12 @@ require('lazy').setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+      local vue_typescript_plugin = vim.env.HOME
+        .. '/.nvm/versions/node/v20.11.0'
+        .. '/lib/node_modules'
+        .. '/@vue/language-server/node_modules'
+        .. '/@vue/typescript-plugin'
+
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -476,7 +483,7 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -487,25 +494,29 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {
-          filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact', 'javascript.jsx' },
+          init_options = {
+            plugins = {
+              {
+                name = '@vue/typescript-plugin',
+                location = vue_typescript_plugin,
+                languages = { 'javascript', 'typescript', 'vue' },
+              },
+            },
+          },
+          filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact', 'javascript.jsx', 'vue' },
         },
 
         rust_analyzer = {},
 
         emmet_language_server = {},
 
-        volar = {
-          filetypes = { 'vue' },
-          init_options = {
-            vue = {
-              hybridMode = false,
-            },
-          },
-        },
+        twiggy_language_server = {},
+
+        eslint = {},
+
+        volar = {},
 
         gopls = {},
-
-        --
 
         lua_ls = {
           -- cmd = {...},
@@ -562,7 +573,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = {}
         return {
           timeout_ms = 500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
@@ -576,6 +587,8 @@ require('lazy').setup({
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         javascript = { { 'prettierd', 'prettier' } },
+        vue = { { 'prettierd', 'prettier' } },
+        c = { 'clang-format' },
       },
     },
   },
