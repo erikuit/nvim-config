@@ -77,8 +77,8 @@ vim.opt.scrolloff = 10
 --  See `:help vim.keymap.set()`
 
 -- Less disorienting scrolling
-vim.keymap.set('n', '<C-d>', '<C-d>M')
-vim.keymap.set('n', '<C-u>', '<C-u>M')
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
 -- Add newline without leaving normal mode
 vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Add newline below' })
@@ -605,7 +605,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = {  }
+        local disable_filetypes = {}
         return {
           timeout_ms = 500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
