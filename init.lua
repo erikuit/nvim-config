@@ -469,7 +469,7 @@ require('lazy').setup({
 
       local get_npm_prefix = function()
         local handle = io.popen 'npm config get prefix'
-        local npm_prefix = ''
+        local npm_prefix
         if handle then
           npm_prefix = handle:read('*a'):gsub('\n', '')
           handle:close()
@@ -523,6 +523,16 @@ require('lazy').setup({
         volar = {},
 
         gopls = {},
+
+        intelephense = {
+          settings = {
+            intelephense = {
+              environment = {
+                includePaths = { os.getenv 'PHP_LSP_INCLUDE' },
+              },
+            },
+          },
+        },
 
         lua_ls = {
           -- cmd = {...},
