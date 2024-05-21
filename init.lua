@@ -531,6 +531,12 @@ require('lazy').setup({
         intelephense = {
           settings = {
             intelephense = {
+              files = {
+                exclude = { '.build' },
+              },
+              format = {
+                enable = false,
+              },
               environment = {
                 includePaths = { os.getenv 'PHP_LSP_INCLUDE' },
               },
