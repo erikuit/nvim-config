@@ -94,6 +94,15 @@ vim.keymap.set('n', 'S', ':%s//g<Left><Left>')
 -- Toggle Neotree binding
 vim.keymap.set('n', '`', '<Cmd>Neotree toggle<CR>')
 
+-- Remove trailing whitespace
+local remove_trailing_whitespace = function()
+  local save_cursor = vim.fn.getpos '.'
+  vim.cmd [[%s/\s\+$//e]]
+  vim.fn.setpos('.', save_cursor)
+end
+
+vim.keymap.set('n', '<leader>w', remove_trailing_whitespace, { desc = 'Remove trailing whitespace' })
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
