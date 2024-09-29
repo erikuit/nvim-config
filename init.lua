@@ -138,6 +138,9 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set({ 'n', 'v' }, '<C-a>', '^', { desc = 'Move to the start of the line' })
 vim.keymap.set({ 'n', 'v' }, '<C-e>', '$', { desc = 'Move to the end of the line' })
 
+-- Use K in normal mode to split a line
+vim.keymap.set('n', 'K', 'i<CR><Esc>')
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
