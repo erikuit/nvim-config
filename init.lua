@@ -135,8 +135,8 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Keybinds to map start/end of line to Ctrl + a/e
-vim.keymap.set('n', '<C-a>', '^', { desc = 'Move to the start of the line' })
-vim.keymap.set('n', '<C-e>', '$', { desc = 'Move to the end of the line' })
+vim.keymap.set({ 'n', 'v' }, '<C-a>', '^', { desc = 'Move to the start of the line' })
+vim.keymap.set({ 'n', 'v' }, '<C-e>', '$', { desc = 'Move to the end of the line' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
