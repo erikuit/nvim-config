@@ -583,6 +583,9 @@ require('lazy').setup({
         intelephense = {
           settings = {
             intelephense = {
+              diagnostics = {
+                undefinedProperties = false,
+              },
               files = {
                 exclude = { '.build' },
               },
