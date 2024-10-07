@@ -94,6 +94,9 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 -- Prefill replace command
 vim.keymap.set('n', 'S', ':%s//g<Left><Left>')
 
+-- Execute shell commands on the current buffer
+vim.keymap.set('n', '<leader>!', ':%!', { desc = 'Execute shell command on buffer' })
+
 -- Toggle Neotree binding
 vim.keymap.set('n', '`', '<Cmd>Neotree toggle<CR>')
 
