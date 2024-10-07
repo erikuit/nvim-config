@@ -88,8 +88,8 @@ vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Add newline below' })
 vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Add newline above' })
 
 -- Move selected line / block of text in visual mode
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'J', ":m '>+1<CR><CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR><CR>gv=gv")
 
 -- Prefill replace command
 vim.keymap.set('n', 'S', ':%s//g<Left><Left>')
