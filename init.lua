@@ -144,10 +144,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- Keybinds to map start/end of line to Ctrl + a/e
-vim.keymap.set({ 'n', 'v' }, '<C-a>', '^', { desc = 'Move to the start of the line' })
-vim.keymap.set({ 'n', 'v' }, '<C-e>', '$', { desc = 'Move to the end of the line' })
-
 -- Leader p to keep the yank buffer after pasting in visual mode
 vim.keymap.set('v', '<leader>p', '"_dP', { desc = 'Paste after yanking in visual mode' })
 
