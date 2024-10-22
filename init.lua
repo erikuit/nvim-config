@@ -97,8 +97,8 @@ vim.keymap.set('n', 'S', ':%s//g<Left><Left>')
 -- Execute shell commands on the current buffer
 vim.keymap.set('n', '<leader>!', ':%!', { desc = 'Execute shell command on buffer' })
 
--- Toggle Neotree binding
-vim.keymap.set('n', '`', '<Cmd>Neotree toggle<CR>')
+-- Toggle MiniFiles binding
+vim.keymap.set('n', '`', '<Cmd>lua MiniFiles.open()<CR>')
 
 -- Remove trailing whitespace
 local remove_trailing_whitespace = function()
@@ -887,6 +887,12 @@ require('lazy').setup({
       statusline.section_location = function()
         return '%2l:%-2v'
       end
+
+      require('mini.files').setup {
+        mappings = {
+          close = '`',
+        },
+      }
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
