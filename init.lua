@@ -100,6 +100,10 @@ vim.keymap.set('n', '<leader>!', ':%!', { desc = 'Execute shell command on buffe
 -- Toggle MiniFiles binding
 vim.keymap.set('n', '`', '<Cmd>lua MiniFiles.open()<CR>')
 
+-- Move through buffers with Ctrl + n/p
+vim.keymap.set('n', '<C-n>', '<Cmd>bn<CR>', { desc = 'Move to next buffer' })
+vim.keymap.set('n', '<C-p>', '<Cmd>bp<CR>', { desc = 'Move to previous buffer' })
+
 -- Remove trailing whitespace
 local remove_trailing_whitespace = function()
   local save_cursor = vim.fn.getpos '.'
