@@ -627,7 +627,7 @@ require('lazy').setup({
                 enable = false,
               },
               environment = {
-                includePaths = { os.getenv 'PHP_LSP_INCLUDE' },
+                includePaths = { os.getenv 'PHP_LSP_INCLUDE', vim.env.HOME .. '/.config/composer/' },
               },
             },
           },
