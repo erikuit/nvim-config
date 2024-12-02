@@ -150,6 +150,9 @@ vim.keymap.set('v', '<leader>p', '"_dP', { desc = 'Paste after yanking in visual
 -- Use K in normal mode to split a line
 vim.keymap.set('n', 'K', 'i<CR><Esc>')
 
+-- Don't add spaces when joining lines
+vim.keymap.set('n', 'J', 'gJ')
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
