@@ -410,6 +410,8 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.live_grep { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      require('config.telescope.multigrep').setup()
     end,
   },
 
