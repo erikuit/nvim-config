@@ -75,7 +75,20 @@ vim.opt.scrolloff = 10
 
 -- Hide the cmdline when it's not in use
 vim.opt.cmdheight = 0
+vim.api.nvim_create_augroup('MacroCmdHeight', { clear = true })
+vim.api.nvim_create_autocmd('RecordingEnter', {
+  group = 'MacroCmdHeight',
+  callback = function()
+    vim.opt.cmdheight = 1
+  end,
+})
 
+vim.api.nvim_create_autocmd('RecordingLeave', {
+  group = 'MacroCmdHeight',
+  callback = function()
+    vim.opt.cmdheight = 0
+  end,
+})
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
