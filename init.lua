@@ -1,187 +1,14 @@
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
 
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
-
--- Set tab size
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = true
-
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
-
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
-
--- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
-
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-
--- Hide the cmdline when it's not in use
-vim.opt.cmdheight = 0
-vim.api.nvim_create_augroup('MacroCmdHeight', { clear = true })
-vim.api.nvim_create_autocmd('RecordingEnter', {
-  group = 'MacroCmdHeight',
-  callback = function()
-    vim.opt.cmdheight = 1
-  end,
-})
-
-vim.api.nvim_create_autocmd('RecordingLeave', {
-  group = 'MacroCmdHeight',
-  callback = function()
-    vim.opt.cmdheight = 0
-  end,
-})
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
--- Less disorienting scrolling
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
-
--- Add newline without leaving normal mode
-vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Add newline below' })
-vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Add newline above' })
-
--- Move selected line / block of text in visual mode
-vim.keymap.set('v', 'J', ":m '>+1<CR><CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR><CR>gv=gv")
-
--- Prefill replace command
-vim.keymap.set('n', 'S', ':%s//g<Left><Left>')
-
--- Execute shell commands on the current buffer
-vim.keymap.set('n', '<leader>!', ':%!', { desc = 'Execute shell command on buffer' })
-
--- Toggle MiniFiles binding
-vim.keymap.set('n', '`', '<Cmd>lua MiniFiles.open()<CR>')
-
--- Move through buffers with Ctrl + n/p
-vim.keymap.set('n', '<C-n>', '<Cmd>bn<CR>', { desc = 'Move to next buffer' })
-vim.keymap.set('n', '<C-p>', '<Cmd>bp<CR>', { desc = 'Move to previous buffer' })
-
--- Remove trailing whitespace
-local remove_trailing_whitespace = function()
-  local save_cursor = vim.fn.getpos '.'
-  vim.cmd [[%s/\s\+$//e]]
-  vim.fn.setpos('.', save_cursor)
-end
-
-vim.keymap.set('n', '<leader>w', remove_trailing_whitespace, { desc = 'Remove trailing whitespace' })
-
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- TIP: Disable arrow keys in normal mode
-vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
--- Leader p to keep the yank buffer after pasting in visual mode
-vim.keymap.set('v', '<leader>p', '"_dP', { desc = 'Paste after yanking in visual mode' })
-
--- Use K in normal mode to split a line
-vim.keymap.set('n', 'K', 'i<CR><Esc>')
-
--- Don't add spaces when joining lines
-vim.keymap.set('n', 'J', 'gJ')
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+require 'config.opt'
+require 'config.keymap'
+require 'config.autocmd'
+require 'config.usercmd'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -190,16 +17,6 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
---
---  To check the current status of your plugins, run
---    :Lazy
---
---  You can press `?` in this menu for help. Use `:q` to close the window
---
---  To update plugins you can run
---    :Lazy update
---
--- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
@@ -213,10 +30,23 @@ require('lazy').setup({
     end,
   },
 
-  -- NOTE: Plugins can also be added by using a table,
-  -- with the first argument being the link and the following
-  -- keys can be used to configure plugin behavior/loading/etc.
-  --
+  {
+    '3rd/image.nvim',
+    event = 'VeryLazy',
+    opts = {
+      backend = 'kitty',
+      max_width = nil,
+      max_height = nil,
+      max_width_window_percentage = nil,
+      max_height_window_percentage = 50,
+      kitty_method = 'normal',
+      integrations = {
+        markdown = {
+          enabled = false,
+        },
+      },
+    },
+  },
   -- Use `opts = {}` to force a plugin to be loaded.
   --
   --  This is equivalent to:
