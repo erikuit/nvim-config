@@ -15,6 +15,9 @@ vim.keymap.set('n', '<M>O', 'O<Esc>', { desc = 'Add newline above' })
 vim.keymap.set('v', 'J', ":m '>+1<CR><CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR><CR>gv=gv")
 
+vim.keymap.set({ 'n', 'v' }, '<C-a>', '^', { desc = 'Move to the first non-blank character of the line' })
+vim.keymap.set({ 'n', 'v' }, '<C-e>', '$', { desc = 'Move to the last character of the line' })
+
 -- Prefill replace command
 vim.keymap.set('n', 'S', ':%s//g<Left><Left>')
 
