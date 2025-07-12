@@ -7,6 +7,9 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'n', 'nzz', { desc = 'Next search result with centering' })
 vim.keymap.set('n', 'N', 'Nzz', { desc = 'Previous search result with centering' })
 
+-- Quickly edit vim config
+vim.keymap.set('n', '<leader>vc', ':e ~/.config/nvim/init.lua<CR>:lcd %:p:h<CR>', { desc = 'Edit nvim config' })
+
 -- Add newline without leaving normal mode
 vim.keymap.set('n', '<M>o', 'o<Esc>', { desc = 'Add newline below' })
 vim.keymap.set('n', '<M>O', 'O<Esc>', { desc = 'Add newline above' })
