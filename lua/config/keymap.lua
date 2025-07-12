@@ -77,6 +77,7 @@ vim.keymap.set('n', 'K', 'i<CR><Esc>')
 -- Don't add spaces when joining lines
 vim.keymap.set('n', 'J', 'gJ')
 
+-- Disable/enable formatting
 vim.keymap.set('n', '<leader>fd', '<cmd>FormatDisable<CR>', { desc = 'Disable formatting' })
 vim.keymap.set('n', '<leader>fe', '<cmd>FormatEnable<CR>', { desc = 'Enable formatting' })
 
