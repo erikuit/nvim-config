@@ -421,7 +421,7 @@ require('lazy').setup({
 
         eslint = {},
 
-        volar = {},
+        vue_ls = {},
 
         gopls = {},
 
