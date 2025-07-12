@@ -527,6 +527,18 @@ require('lazy').setup({
         html = { 'prettier', stop_after_first = true },
         vue = { 'prettier', stop_after_first = true },
         c = { 'clang-format' },
+        php = { 'phpcbf', stop_after_first = true },
+      },
+      formatters = {
+        phpcbf = {
+          command = vim.fn.expand '$CMSDIR' .. 'vendor/bin/phpcbf',
+          args = {
+            '--standard=' .. vim.fn.expand '$CMSDIR' .. 'assets/codestyle/ruleset.xml',
+            '$FILENAME',
+            '--ignore=vendor/*,node_modules/*,plugins/*,public/*,.build/*',
+          },
+          stdin = false,
+        },
       },
     },
     init = function()
