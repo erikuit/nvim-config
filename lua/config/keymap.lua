@@ -1,9 +1,11 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Less disorienting scrolling
+-- Center screen when moving up or down
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', 'n', 'nzz', { desc = 'Next search result with centering' })
+vim.keymap.set('n', 'N', 'Nzz', { desc = 'Previous search result with centering' })
 
 -- Add newline without leaving normal mode
 vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Add newline below' })
