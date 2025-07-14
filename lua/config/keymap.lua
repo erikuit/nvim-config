@@ -1,17 +1,25 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Less disorienting scrolling
+-- Center screen when moving up or down
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', 'n', 'nzz', { desc = 'Next search result with centering' })
+vim.keymap.set('n', 'N', 'Nzz', { desc = 'Previous search result with centering' })
+
+-- Quickly edit vim config
+vim.keymap.set('n', '<leader>vc', ':e ~/.config/nvim/init.lua<CR>:lcd %:p:h<CR>', { desc = 'Edit nvim config' })
 
 -- Add newline without leaving normal mode
-vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Add newline below' })
-vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Add newline above' })
+vim.keymap.set('n', '<M>o', 'o<Esc>', { desc = 'Add newline below' })
+vim.keymap.set('n', '<M>O', 'O<Esc>', { desc = 'Add newline above' })
 
 -- Move selected line / block of text in visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR><CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR><CR>gv=gv")
+
+vim.keymap.set({ 'n', 'v' }, '<C-a>', '^', { desc = 'Move to the first non-blank character of the line' })
+vim.keymap.set({ 'n', 'v' }, '<C-e>', '$', { desc = 'Move to the last character of the line' })
 
 -- Prefill replace command
 vim.keymap.set('n', 'S', ':%s//g<Left><Left>')
@@ -72,6 +80,7 @@ vim.keymap.set('n', 'K', 'i<CR><Esc>')
 -- Don't add spaces when joining lines
 vim.keymap.set('n', 'J', 'gJ')
 
+-- Disable/enable formatting
 vim.keymap.set('n', '<leader>fd', '<cmd>FormatDisable<CR>', { desc = 'Disable formatting' })
 vim.keymap.set('n', '<leader>fe', '<cmd>FormatEnable<CR>', { desc = 'Enable formatting' })
 
