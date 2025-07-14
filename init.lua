@@ -33,24 +33,6 @@ require('lazy').setup({
     end,
   },
 
-  {
-    '3rd/image.nvim',
-    event = 'VeryLazy',
-    opts = {
-      backend = 'kitty',
-      max_width = nil,
-      max_height = nil,
-      max_width_window_percentage = nil,
-      max_height_window_percentage = 50,
-      kitty_method = 'normal',
-      integrations = {
-        markdown = {
-          enabled = false,
-        },
-      },
-    },
-  },
-
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
