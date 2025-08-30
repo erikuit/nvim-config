@@ -6,6 +6,7 @@ vim.opt.mouse = 'a'
 vim.opt.undofile = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.jumpoptions = 'stack,view'
 -- Dollar sign for PHP
 vim.opt.iskeyword:append { '-', '$' }
 
