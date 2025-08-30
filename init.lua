@@ -161,7 +161,21 @@ require('lazy').setup({
         pickers = {
           find_files = {
             hidden = true,
+            file_ignore_patterns = { '.git' },
           },
+        },
+        file_ignore_patterns = {
+          'node_modules',
+          '.git',
+          '.svn',
+          '.hg',
+          '.tox',
+          '.venv',
+          'vendor',
+          'dist',
+          'build',
+          'coverage',
+          'logs',
         },
         extensions = {
           ['ui-select'] = {
