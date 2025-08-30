@@ -1,7 +1,7 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard:append { 'unnamedplus' }
 vim.opt.mouse = 'a'
 vim.opt.undofile = true
 vim.opt.splitright = true
