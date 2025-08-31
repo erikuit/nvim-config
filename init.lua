@@ -405,6 +405,7 @@ require('lazy').setup({
         gopls = {},
 
         intelephense = {
+          root_markers = { 'composer.json', '.git', 'build.xml' },
           settings = {
             intelephense = {
               diagnostics = {
