@@ -13,19 +13,19 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Hide the cmdline when it's not in use
-vim.opt.cmdheight = 0
+vim.o.cmdheight = 0
 vim.api.nvim_create_augroup('MacroCmdHeight', { clear = true })
 vim.api.nvim_create_autocmd('RecordingEnter', {
   group = 'MacroCmdHeight',
   callback = function()
-    vim.opt.cmdheight = 1
+    vim.o.cmdheight = 1
   end,
 })
 
 vim.api.nvim_create_autocmd('RecordingLeave', {
   group = 'MacroCmdHeight',
   callback = function()
-    vim.opt.cmdheight = 0
+    vim.o.cmdheight = 0
   end,
 })
 
