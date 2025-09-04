@@ -84,6 +84,11 @@ vim.keymap.set('n', 'J', 'gJ')
 vim.keymap.set('n', '<leader>fd', '<cmd>FormatDisable<CR>', { desc = 'Disable formatting' })
 vim.keymap.set('n', '<leader>fe', '<cmd>FormatEnable<CR>', { desc = 'Enable formatting' })
 
+-- Navigate through the quickfix list
+vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '<C-k>', '<cmd>cprev<CR>zz')
+vim.keymap.set('n', '<C-q>', '<cmd>cclose<CR>', { desc = 'Close the quickfix list' })
+
 -- Simpler find and replace in the quickfix list
 vim.api.nvim_create_user_command('QfReplace', function(opts)
   vim.api.nvim_command(string.format('cdo s/%s/%s', opts.fargs[1], opts.fargs[2]))
