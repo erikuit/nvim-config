@@ -43,6 +43,15 @@ end
 
 vim.keymap.set('n', '<leader>w', remove_trailing_whitespace, { desc = 'Remove trailing whitespace' })
 
+-- Open current directory in chromium
+local open_browser_tab = function()
+  local cwd = vim.uv.cwd()
+  local url = cwd:gsub('/var/www', 'http://localhost')
+  vim.system { 'chromium', url }
+end
+
+vim.keymap.set('n', '<leader>op', open_browser_tab, { desc = 'Open chromium tab at current directory' })
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.o.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
