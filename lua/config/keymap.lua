@@ -11,8 +11,8 @@ vim.keymap.set('n', 'N', 'Nzz', { desc = 'Previous search result with centering'
 vim.keymap.set('n', '<leader>vc', ':e ~/.config/nvim/init.lua<CR>:lcd %:p:h<CR>', { desc = 'Edit nvim config' })
 
 -- Add newline without leaving normal mode
-vim.keymap.set('n', '<M>o', 'o<Esc>', { desc = 'Add newline below' })
-vim.keymap.set('n', '<M>O', 'O<Esc>', { desc = 'Add newline above' })
+vim.keymap.set('n', '<M-o>', 'o<Esc>', { desc = 'Add newline below' })
+vim.keymap.set('n', '<M-O>', 'O<Esc>', { desc = 'Add newline above' })
 
 -- Move selected line / block of text in visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR><CR>gv=gv")
