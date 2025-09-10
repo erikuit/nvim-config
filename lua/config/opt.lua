@@ -1,38 +1,40 @@
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
-vim.opt.clipboard = 'unnamedplus'
-vim.opt.mouse = 'a'
-vim.opt.undofile = true
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.cursorline = true
+vim.opt.clipboard:append { 'unnamedplus' }
+vim.o.mouse = 'a'
+vim.o.undofile = true
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.jumpoptions = 'stack,view'
+
 -- Dollar sign for PHP
 vim.opt.iskeyword:append { '-', '$' }
 
 -- Indentation
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.breakindent = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+vim.o.breakindent = true
 
 -- Search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Visual
-vim.opt.signcolumn = 'yes'
-vim.opt.list = true
+vim.o.signcolumn = 'yes'
+vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-vim.opt.scrolloff = 10
+vim.o.scrolloff = 10
 -- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+vim.o.showmode = false
 -- Show substitutions while typing
-vim.opt.inccommand = 'split'
+vim.o.inccommand = 'split'
 -- Cursor
-vim.opt.guicursor = 'n-v-i-c:block-Cursor'
+vim.o.guicursor = 'n-v-i-c:block-Cursor'
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.o.updatetime = 250
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+vim.o.timeoutlen = 300

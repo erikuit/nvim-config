@@ -11,8 +11,8 @@ vim.keymap.set('n', 'N', 'Nzz', { desc = 'Previous search result with centering'
 vim.keymap.set('n', '<leader>vc', ':e ~/.config/nvim/init.lua<CR>:lcd %:p:h<CR>', { desc = 'Edit nvim config' })
 
 -- Add newline without leaving normal mode
-vim.keymap.set('n', '<M>o', 'o<Esc>', { desc = 'Add newline below' })
-vim.keymap.set('n', '<M>O', 'O<Esc>', { desc = 'Add newline above' })
+vim.keymap.set('n', '<M-o>', 'o<Esc>', { desc = 'Add newline below' })
+vim.keymap.set('n', '<M-O>', 'O<Esc>', { desc = 'Add newline above' })
 
 -- Move selected line / block of text in visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR><CR>gv=gv")
@@ -43,8 +43,17 @@ end
 
 vim.keymap.set('n', '<leader>w', remove_trailing_whitespace, { desc = 'Remove trailing whitespace' })
 
+-- Open current directory in chromium
+local open_browser_tab = function()
+  local cwd = vim.uv.cwd()
+  local url = cwd:gsub('/var/www', 'http://localhost')
+  vim.system { 'chromium', url }
+end
+
+vim.keymap.set('n', '<leader>op', open_browser_tab, { desc = 'Open chromium tab at current directory' })
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
+vim.o.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
@@ -62,15 +71,6 @@ vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
 -- Leader p to keep the yank buffer after pasting in visual mode
 vim.keymap.set('v', '<leader>p', '"_dP', { desc = 'Paste after yanking in visual mode' })
 
@@ -83,6 +83,11 @@ vim.keymap.set('n', 'J', 'gJ')
 -- Disable/enable formatting
 vim.keymap.set('n', '<leader>fd', '<cmd>FormatDisable<CR>', { desc = 'Disable formatting' })
 vim.keymap.set('n', '<leader>fe', '<cmd>FormatEnable<CR>', { desc = 'Enable formatting' })
+
+-- Navigate through the quickfix list
+vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '<C-k>', '<cmd>cprev<CR>zz')
+vim.keymap.set('n', '<C-q>', '<cmd>cclose<CR>', { desc = 'Close the quickfix list' })
 
 -- Simpler find and replace in the quickfix list
 vim.api.nvim_create_user_command('QfReplace', function(opts)
